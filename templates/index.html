@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Exam Prediction</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+    font-family: 'Poppins', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #6a11cb, #2574fc4f);
+    display: flex;
+    flex-direction: column;   /* stack items vertically */
+    align-items: center;      /* center horizontally */
+}
+
+/* Header stays at top */
+header {
+    width: 100%;
+    background: transparent;
+    color: white;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+    padding: 20px 0;
+    margin-bottom: 20px;  /* space below header */
+}
+
+/* Glass container for form */
+.container {
+    width: 60%;
+    max-width: 600px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    margin-bottom: 40px;  /* spacing at bottom */
+}
+
+/* Titles inside container */
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* Form groups */
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    font-weight: 500;
+    display: block;
+    margin-bottom: 6px;
+}
+
+/* Inputs */
+input[type="number"] {
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    outline: none;
+    font-size: 1rem;
+}
+
+/* Placeholder text */
+input[type="number"]::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Submit button */
+input[type="submit"] {
+    background: linear-gradient(135deg, #43e97b, #38f9d7);
+    color: #fff;
+    padding: 12px;
+    border: none;
+    border-radius: 12px;
+    width: 100%;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background: linear-gradient(135deg, #38f9d7, #43e97b);
+    transform: scale(1.03);
+}
+
+/* Result box */
+.result {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-top: 20px;
+    color: #fff;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Student Exam Performance Prediction</h1>
+    </header>
+
+    <div class="container">
+        <h2>Enter Student Data</h2>
+        <form method="POST" action="/predict">
+            <div class="form-group">
+                <label for="feature1">Study Hours</label>
+                <input type="number" id="feature1" name="feature1" required step="any">
+            </div>
+            <div class="form-group">
+                <label for="feature2">Previous Scores</label>
+                <input type="number" id="feature2" name="feature2" required step="any">
+            </div>
+            <input type="submit" value="Predict Result">
+        </form>
+
+        {% if result %}
+        <div class="result">
+            <p>Prediction Result: {{ result }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
